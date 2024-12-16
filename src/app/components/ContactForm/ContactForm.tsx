@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import React, { useState, useActionState } from "react";
-import { handleFormSubmission } from '@/app/actions';
+import { handleFormSubmission } from "@/app/actions";
 
 interface ContactFormProps {
   domain: string;
@@ -16,7 +16,7 @@ const SubmitButton = ({ pending }: { pending: boolean }) => {
       >
         Submitting...
       </button>
-    )
+    );
   }
 
   return (
@@ -26,48 +26,59 @@ const SubmitButton = ({ pending }: { pending: boolean }) => {
     >
       Submit
     </button>
-  )
-}
+  );
+};
 
 const ThankYouMessage = () => {
   return (
     <p className="mb-4 p-2 bg-green-100 text-green-600 text-center">
       Thank you for your submission. We will get back to you shortly.
     </p>
-  )
-}
+  );
+};
 
 const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
   const initialState = {
-    name: '',
-    email: '',
+    name: "",
+    email: "",
     offer: 1000,
-    honeypot: '',
-    yourMessage: '',
-    captchaAnswer: '',
+    honeypot: "",
+    yourMessage: "",
+    captchaAnswer: "",
     domain,
   };
   const initialFormState = {
-    message: '',
+    message: "",
     valid: false,
-  }
-  const [formValues, setFormValue ] =  useState(initialState);
-  const [form, formAction, pending] =  useActionState(handleFormSubmission, initialFormState);
+  };
+  const [formValues, setFormValue] = useState(initialState);
+  const [form, formAction, pending] = useActionState(
+    handleFormSubmission,
+    initialFormState,
+  );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormValue(prevState => ({ ...prevState, [name]: value }));
+    setFormValue((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  return form.valid === true ? <ThankYouMessage /> : (
+  return form.valid === true ? (
+    <ThankYouMessage />
+  ) : (
     <form action={formAction} className="max-w-lg mx-auto p-6">
-      {form.message !== '' && (
-        <p className={`mb-4 p-2 ${form.valid === false ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>
+      {form.message !== "" && (
+        <p
+          className={`mb-4 p-2 ${form.valid === false ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"}`}
+        >
           {form.message}
         </p>
       )}
       <div className="mb-4">
-        <label htmlFor="name" className="block text-white font-semibold mb-2">Name:</label>
+        <label htmlFor="name" className="block text-white font-semibold mb-2">
+          Name:
+        </label>
         <input
           type="text"
           id="name"
@@ -81,7 +92,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="email" className="block text-white font-semibold mb-2">Email:</label>
+        <label htmlFor="email" className="block text-white font-semibold mb-2">
+          Email:
+        </label>
         <input
           type="email"
           id="email"
@@ -95,7 +108,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="offer" className="block text-white font-semibold mb-2">Offer:</label>
+        <label htmlFor="offer" className="block text-white font-semibold mb-2">
+          Offer:
+        </label>
         <input
           type="offer"
           id="offer"
@@ -109,7 +124,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="yourMessage" className="block text-white font-semibold mb-2">Message:</label>
+        <label
+          htmlFor="yourMessage"
+          className="block text-white font-semibold mb-2"
+        >
+          Message:
+        </label>
         <textarea
           id="yourMessage"
           name="yourMessage"
@@ -122,7 +142,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
         ></textarea>
       </div>
       <div className="mb-4">
-        <label htmlFor="captchaAnswer" className="block text-white font-semibold mb-2">What is three + 3?</label>
+        <label
+          htmlFor="captchaAnswer"
+          className="block text-white font-semibold mb-2"
+        >
+          What is three + 3?
+        </label>
         <input
           type="text"
           id="captchaAnswer"
@@ -136,7 +161,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
         />
       </div>
       <div className="hidden">
-        <label htmlFor="domain" className="block text-white font-semibold mb-2">Domain</label>
+        <label htmlFor="domain" className="block text-white font-semibold mb-2">
+          Domain
+        </label>
         <input
           type="text"
           id="domain"
@@ -147,7 +174,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
         />
       </div>
       <div className="hidden">
-        <label htmlFor="honeypot" className="block text-white font-semibold mb-2">Leave this field blank</label>
+        <label
+          htmlFor="honeypot"
+          className="block text-white font-semibold mb-2"
+        >
+          Leave this field blank
+        </label>
         <input
           type="text"
           id="honeypot"
@@ -158,7 +190,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ domain }) => {
       </div>
       <SubmitButton pending={pending} />
     </form>
-
   );
 };
 

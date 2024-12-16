@@ -6,6 +6,7 @@ export interface FormData {
   honeypot?: string;
   captchaAnswer?: string;
   domain: string;
+  get: (key: string) => string;
 }
 
 export interface FormField {
@@ -22,4 +23,3 @@ export interface FormState {
   captchaAnswer: number;
   domain: string;
 }
-

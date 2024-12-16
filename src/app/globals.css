@@ -5,12 +5,11 @@
 :root {
   --primary: #37210b;
   --primary-dark: #271708;
-  --accent-1: #D4AF37;
-  --accent-2: #C67B28;
+  --accent-1: #d4af37;
+  --accent-2: #c67b28;
   --text: #eee;
   --white: #fff;
 }
-
 
 body {
   color: var(--text);
