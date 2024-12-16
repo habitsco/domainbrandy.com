@@ -25,8 +25,8 @@ const domains = {
     "staychain.com",
     "littleearthllc.com",
     "coinurge.com",
-    "cryptoxray.com"
-  ]
+    "cryptoxray.com",
+  ],
 };
 
 export default domains;

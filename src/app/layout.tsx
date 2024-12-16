@@ -1,14 +1,14 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {headers} from "next/headers";
+import { headers } from "next/headers";
 import Head from "next/head";
-
+import GoogleAnalytics from "./ga";
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata() {
   const headersList = headers();
-  const domain = headersList.get('host') as string;
-  const customTitle =  `${domain} is for sale | domainbrandy`;
+  const domain = headersList.get("host") as string;
+  const customTitle = `${domain} is for sale | domainbrandy`;
 
   return {
     title: customTitle,
@@ -18,13 +18,14 @@ export async function generateMetadata() {
       description: `Looking for prime digital real estate? ${domain} is now available. Perfect for your next tech startup, or website.`,
       images: [
         {
-          url: 'https://domainbrandy.com/logo.png',
+          url: "https://domainbrandy.com/logo.png",
           width: 1200,
           height: 630,
-          alt: 'domainbrandy.com',
-        }],
-  }
-}
+          alt: "domainbrandy.com",
+        },
+      ],
+    },
+  };
 }
 
 export default function RootLayout({
@@ -32,11 +33,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   );
 }
