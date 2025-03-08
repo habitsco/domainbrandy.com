@@ -12,7 +12,6 @@ const domains = {
     "nwglamp.com",
     "podtasks.com",
     "quizspree.io",
-    "staycards.com",
     "staystream.com",
     "tubeamp.io",
     "uplighting.co",

@@ -13,20 +13,25 @@ function sortDomains(currentDomain: string, domains: string[]) {
         (domain) => domain.charAt(0).toLowerCase() !== letter,
       ),
     );
-  const midpoint = Math.ceil(combinedDomains.length / 2);
-  return [combinedDomains.slice(0, midpoint), combinedDomains.slice(midpoint)];
+  
+  const columnSize = Math.ceil(combinedDomains.length / 3);
+  return [
+    combinedDomains.slice(0, columnSize),
+    combinedDomains.slice(columnSize, columnSize * 2),
+    combinedDomains.slice(columnSize * 2)
+  ];
 }
 
 export const DomainList = ({ currentDomain }: { currentDomain: string }) => {
-  const [domainListLeft, domainListRight] = sortDomains(
+  const [domainListLeft, domainListMiddle, domainListRight] = sortDomains(
     currentDomain,
     domains.domains,
   );
+  
   return (
-    <div className="mt-6">
-      <h2 className="mb-3 text-2xl font-semibold">Domains for Sale</h2>
+    <div className="mt-2">
       <div className="flex flex-col md:flex-row justify-between">
-        <ul className="w-full md:w-1/2 mb-0">
+        <ul className="w-full md:w-1/3 mb-2 md:mb-0">
           {domainListLeft.map((domain: string) => {
             return (
               <li key={domain} className="mb-2 text-sm">
@@ -41,7 +46,22 @@ export const DomainList = ({ currentDomain }: { currentDomain: string }) => {
             );
           })}
         </ul>
-        <ul className="w-full md:w-1/2 mb-4 mb-0">
+        <ul className="w-full md:w-1/3 mb-4 md:mb-0">
+          {domainListMiddle.map((domain: string) => {
+            return (
+              <li key={domain} className="mb-2 text-sm">
+                <Link
+                  href={`http://${domain}`}
+                  className="hover:underline"
+                  target="_blank"
+                >
+                  {domain}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <ul className="w-full md:w-1/3 mb-2 md:mb-0">
           {domainListRight.map((domain: string) => {
             return (
               <li key={domain} className="mb-2 text-sm">
@@ -62,4 +82,3 @@ export const DomainList = ({ currentDomain }: { currentDomain: string }) => {
 };
 
 export default DomainList;
-1;

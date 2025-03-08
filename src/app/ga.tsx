@@ -27,7 +27,7 @@ const GoogleAnalytics = () => {
       script.onload = () => {
         gtag('js', new Date());
         gtagConfig();
-      };
+      };``
       document.head.appendChild(script);
     } else {
       gtagConfig();

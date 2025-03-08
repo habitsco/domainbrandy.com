@@ -1,14 +1,3 @@
-export interface FormData {
-  name: string;
-  email: string;
-  offer: number;
-  yourMessage: string;
-  honeypot?: string;
-  captchaAnswer?: string;
-  domain: string;
-  get: (key: string) => string;
-}
-
 export interface FormField {
   name: string;
   value: string | number;

@@ -1,5 +1,4 @@
 "use server";
-import { FormData, FormState, FormField } from "@/app/config/types";
 import { appendToGoogleSheet } from "@/app/utils";
 const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID as string;
 import { revalidatePath } from "next/cache";
@@ -39,24 +38,30 @@ const validateCaptcha = (captchaAnswer: number) => {
   return captchaAnswer === 6;
 };
 
-type IFormSubmission = {
-  message: string;
-  valid: boolean;
+type FormSubmissionData = {
+  name: string;
+  email: string;
+  yourMessage: string;
+  honeypot?: string;
+  offer: number;
+  captchaAnswer: string;
+  domain: string;
+  get: (key: string) => unknown
 };
 
 export async function handleFormSubmission(
-  prevState: IFormSubmission,
-  formData: any,
+  prevState: unknown,
+  formData: FormData,
 ) {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const yourMessage = formData.get("yourMessage") as string;
   const honeypot = formData.get("honeypot") as string;
-  const offer = parseInt(formData.get("offer"));
+  const offer = Number(formData.get("offer")) as number;
   const captchaAnswer = formData.get("captchaAnswer") as string;
   const domain = formData.get("domain") as string;
 
-  console.log({
+  console.log('Form Submission', {
     name,
     email,
     yourMessage,
@@ -83,7 +88,7 @@ export async function handleFormSubmission(
     return { valid: false, message: validation.message };
   }
 
-  if (!validateCaptcha(parseInt(String(captchaAnswer)))) {
+  if (!validateCaptcha(parseInt(captchaAnswer))) {
     return { valid: false, message: "Invalid captcha answer." };
   }
 
