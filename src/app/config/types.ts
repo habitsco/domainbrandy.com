@@ -1,6 +1,7 @@
 export interface FormField {
   name: string;
   value: string | number;
+  disabled?: boolean;
 }
 
 export interface FormState {
@@ -11,4 +12,5 @@ export interface FormState {
   offer: number;
   captchaAnswer: number;
   domain: string;
+  disabled?: boolean;
 }

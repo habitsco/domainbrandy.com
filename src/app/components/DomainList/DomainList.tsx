@@ -13,12 +13,12 @@ function sortDomains(currentDomain: string, domains: string[]) {
         (domain) => domain.charAt(0).toLowerCase() !== letter,
       ),
     );
-  
+
   const columnSize = Math.ceil(combinedDomains.length / 3);
   return [
     combinedDomains.slice(0, columnSize),
     combinedDomains.slice(columnSize, columnSize * 2),
-    combinedDomains.slice(columnSize * 2)
+    combinedDomains.slice(columnSize * 2),
   ];
 }
 
@@ -27,7 +27,7 @@ export const DomainList = ({ currentDomain }: { currentDomain: string }) => {
     currentDomain,
     domains.domains,
   );
-  
+
   return (
     <div className="mt-2">
       <div className="flex flex-col md:flex-row justify-between">

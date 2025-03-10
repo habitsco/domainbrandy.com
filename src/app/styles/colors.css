@@ -3,28 +3,28 @@
   --color-primary-dark: #8a7439;
   --color-primary-hover-light: #9a8142;
   --color-primary-hover-dark: #756331;
-  
+
   --color-text-light: #dcc397;
   --color-text-dark: #dcc397;
   --color-text-muted-light: #bbb0a0;
   --color-text-muted-dark: #bbb0a0;
-  
+
   --color-bg-light: #2b2c2a;
   --color-bg-light-gradient: #24201c;
   --color-bg-dark: #24201c;
   --color-bg-dark-gradient: #2b2c2a;
-  
+
   --color-border-light: #444444;
   --color-border-dark: #444444;
-  
+
   --color-form-input-light: #24201c;
   --color-form-input-dark: #24201c;
   --color-form-input-border-light: #444444;
   --color-form-input-border-dark: #444444;
-  
+
   --color-status-success-bg: #0f3a1a;
   --color-status-success-text: #4ade80;
   --color-status-error-bg: #3f1a1a;
   --color-status-error-text: #f87171;
   --color-status-required: #f87171;
-} 
+}
