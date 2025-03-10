@@ -38,17 +38,6 @@ const validateCaptcha = (captchaAnswer: number) => {
   return captchaAnswer === 6;
 };
 
-type FormSubmissionData = {
-  name: string;
-  email: string;
-  yourMessage: string;
-  honeypot?: string;
-  offer: number;
-  captchaAnswer: string;
-  domain: string;
-  get: (key: string) => unknown
-};
-
 export async function handleFormSubmission(
   prevState: unknown,
   formData: FormData,
@@ -60,8 +49,25 @@ export async function handleFormSubmission(
   const offer = Number(formData.get("offer")) as number;
   const captchaAnswer = formData.get("captchaAnswer") as string;
   const domain = formData.get("domain") as string;
+  const formLoadTime = formData.get("formLoadTime") as string;
 
-  console.log('Form Submission', {
+  console.log(
+    "Form Load Time",
+    Date.now(),
+    Number(formLoadTime),
+    Date.now() - Number(formLoadTime),
+    Date.now() - Number(formLoadTime) < 1000,
+  );
+
+  if (Date.now() - Number(formLoadTime) < 1000) {
+    return {
+      valid: false,
+      disabled: true,
+      message: "Form submitted too quickly.",
+    };
+  }
+
+  console.log("Form Submission", {
     name,
     email,
     yourMessage,
@@ -69,10 +75,15 @@ export async function handleFormSubmission(
     captchaAnswer,
     offer,
     domain,
+    formLoadTime,
   });
 
   if (honeypot) {
-    return { valid: false, message: "Invalid submission detected." };
+    return {
+      valid: false,
+      disabled: true,
+      message: "Invalid submission detected.",
+    };
   }
 
   const validation = validateInput(
@@ -103,6 +114,11 @@ export async function handleFormSubmission(
     year: "numeric",
     month: "long",
     day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    timeZone: "America/Los_Angeles",
+    timeZoneName: "short",
   });
 
   try {

@@ -6,17 +6,25 @@ const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 let auth: JWT | null = null;
 
 export const getAuth = async (): Promise<JWT> => {
+  "use server";
+  const GOOGLE_SHEETS_PRIVATE_KEY =
+    process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, "\n").trim();
+
   if (!auth) {
     auth = new google.auth.JWT({
       email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-      key: process.env.GOOGLE_SHEETS_PRIVATE_KEY,
+      key: GOOGLE_SHEETS_PRIVATE_KEY,
       scopes: SCOPES,
     });
   }
   return auth;
 };
 
-export const appendToGoogleSheet = async (spreadsheetId: string, values: any[]) => {
+export const appendToGoogleSheet = async (
+  spreadsheetId: string,
+  values: any[],
+) => {
+  "use server";
   const auth = await getAuth();
   const sheets = google.sheets({ version: "v4", auth });
 
@@ -30,4 +38,5 @@ export const appendToGoogleSheet = async (spreadsheetId: string, values: any[]) 
   });
 };
 
-export const getDomainName = (domain: string) => domain.replace('www.', '') as string;
+export const getDomainName = (domain: string) =>
+  domain.replace("www.", "") as string;
