@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import domains from "@/app/config/domains";
+import { domains } from "@/app/config/domains";
 
 function sortDomains(currentDomain: string, domains: string[]) {
   const letter = currentDomain.charAt(0).toLowerCase();
@@ -25,7 +25,7 @@ function sortDomains(currentDomain: string, domains: string[]) {
 export const DomainList = ({ currentDomain }: { currentDomain: string }) => {
   const [domainListLeft, domainListMiddle, domainListRight] = sortDomains(
     currentDomain,
-    domains.domains,
+    domains,
   );
 
   return (

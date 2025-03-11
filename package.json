@@ -7,13 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "domains:add": "tsx ./scripts/addDomains.ts",
     "prettier": "prettier --check --ignore-path .gitignore .",
     "prettier:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@types/node": "20.10.6",
-    "@types/react": "18.2.46",
-    "@types/react-dom": "18.2.18",
     "dotenv": "^16.4.5",
     "google-auth-library": "^9.13.0",
     "googleapis": "^140.0.1",
@@ -36,6 +34,7 @@
     "postcss": "^8",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.19.3",
     "typescript": "^5"
   }
 }

@@ -70,7 +70,7 @@ export default function Page() {
             <div className="relative">
               <div className="relative z-10 bg-white dark:bg-[#2b2c2a] rounded-2xl shadow-xl overflow-hidden border border-[#dcc397] dark:border-[#444444]">
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#b0944c] to-[#8a7439]"></div>
-                <div className="p-6">
+                <div className="pt-10 px-6 pb-6">
                   <DomainList currentDomain={domain} />
                 </div>
               </div>
