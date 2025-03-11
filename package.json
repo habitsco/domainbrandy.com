@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "domains:add": "tsx ./scripts/addDomains.ts",
+    "domains:check": "tsx ./scripts/check-domain-redirects.ts",
     "prettier": "prettier --check --ignore-path .gitignore .",
     "prettier:fix": "prettier --write --ignore-path .gitignore ."
   },
